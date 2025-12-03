@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const input = fs.readFileSync(path.join(__dirname, 'input1.txt'), 'utf8').toString().trim();
+const input = fs
+    .readFileSync(path.join(__dirname, 'input1.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const splitLines = input.split('\n');
 const arr = splitLines.map((line) => line.split(''));
@@ -94,11 +97,24 @@ const part2 = (arr) => {
 
     const visited = generateVisited(arr);
 
-    const getAmountOfNewWalls = (arr, i, j, currentItem, wallPositions, localVisited) => {
+    const getAmountOfNewWalls = (
+        arr,
+        i,
+        j,
+        currentItem,
+        wallPositions,
+        localVisited,
+    ) => {
         let walls = wallPositions.length;
 
-        const verticalOffsets = [advancedMoveLookup.up, advancedMoveLookup.down];
-        const horizontalOffsets = [advancedMoveLookup.left, advancedMoveLookup.right];
+        const verticalOffsets = [
+            advancedMoveLookup.up,
+            advancedMoveLookup.down,
+        ];
+        const horizontalOffsets = [
+            advancedMoveLookup.left,
+            advancedMoveLookup.right,
+        ];
 
         const wallsInVertical = new Set();
         for (let [iOff, jOff] of verticalOffsets) {
@@ -143,7 +159,10 @@ const part2 = (arr) => {
                 for (let singleWall of localVisited[newI][newJ][1]) {
                     if (mutations[move][singleWall]) {
                         console.log('We should check', mutations[move]);
-                        console.log('it has following walls', localVisited[newI][newJ][1]);
+                        console.log(
+                            'it has following walls',
+                            localVisited[newI][newJ][1],
+                        );
                         console.log(
                             'At position',
                             i + 1,
@@ -169,7 +188,11 @@ const part2 = (arr) => {
         //console.log("wallsInHorizontal", wallsInHorizontal);
         //console.log("wallsInDiagonal", wallsInDiagonal);
 
-        const allWalls = new Set([...wallsInVertical, ...wallsInHorizontal, ...wallsInDiagonal]);
+        const allWalls = new Set([
+            ...wallsInVertical,
+            ...wallsInHorizontal,
+            ...wallsInDiagonal,
+        ]);
         console.log('allWalls', allWalls);
         console.log('potential wallPositions', wallPositions);
         for (let wall of wallPositions) {
@@ -189,7 +212,11 @@ const part2 = (arr) => {
             const newI = i + offsets[0];
             const newJ = j + offsets[1];
 
-            if (!arr[newI] || !arr[newI][newJ] || arr[newI][newJ] !== currentItem) {
+            if (
+                !arr[newI] ||
+                !arr[newI][newJ] ||
+                arr[newI][newJ] !== currentItem
+            ) {
                 walls.push(direction);
             }
         }
@@ -199,28 +226,41 @@ const part2 = (arr) => {
     const getAjustmentBug = (i, j, localVisited) => {
         // if there are adjustent elements and both in memory, with same direction, decrease the wall count
         let bugCount = 0;
-        const verticalOffsets = [advancedMoveLookup.up, advancedMoveLookup.down];
-        const horizontalOffsets = [advancedMoveLookup.left, advancedMoveLookup.right];
+        const verticalOffsets = [
+            advancedMoveLookup.up,
+            advancedMoveLookup.down,
+        ];
+        const horizontalOffsets = [
+            advancedMoveLookup.left,
+            advancedMoveLookup.right,
+        ];
 
-        const verticalItemPositions = verticalOffsets.map(([iOff, jOff]) => [i + iOff, j + jOff]);
+        const verticalItemPositions = verticalOffsets.map(([iOff, jOff]) => [
+            i + iOff,
+            j + jOff,
+        ]);
 
         if (
             localVisited[verticalItemPositions[0][0]] &&
-            localVisited[verticalItemPositions[0][0]][verticalItemPositions[0][1]] &&
+            localVisited[verticalItemPositions[0][0]][
+                verticalItemPositions[0][1]
+            ] &&
             localVisited[verticalItemPositions[1][0]] &&
-            localVisited[verticalItemPositions[1][0]][verticalItemPositions[1][1]]
+            localVisited[verticalItemPositions[1][0]][
+                verticalItemPositions[1][1]
+            ]
         ) {
             // check if they both have left or both have right
             if (
-                (localVisited[verticalItemPositions[0][0]][verticalItemPositions[0][1]][1].includes(
-                    'left',
-                ) &&
+                (localVisited[verticalItemPositions[0][0]][
+                    verticalItemPositions[0][1]
+                ][1].includes('left') &&
                     localVisited[verticalItemPositions[1][0]][
                         verticalItemPositions[1][1]
                     ][1].includes('left')) ||
-                (localVisited[verticalItemPositions[0][0]][verticalItemPositions[0][1]][1].includes(
-                    'right',
-                ) &&
+                (localVisited[verticalItemPositions[0][0]][
+                    verticalItemPositions[0][1]
+                ][1].includes('right') &&
                     localVisited[verticalItemPositions[1][0]][
                         verticalItemPositions[1][1]
                     ][1].includes('right'))
@@ -239,16 +279,19 @@ const part2 = (arr) => {
             //}
         }
 
-        const horizontalItemPositions = horizontalOffsets.map(([iOff, jOff]) => [
-            i + iOff,
-            j + jOff,
-        ]);
+        const horizontalItemPositions = horizontalOffsets.map(
+            ([iOff, jOff]) => [i + iOff, j + jOff],
+        );
 
         if (
             localVisited[horizontalItemPositions[0][0]] &&
-            localVisited[horizontalItemPositions[0][0]][horizontalItemPositions[0][1]] &&
+            localVisited[horizontalItemPositions[0][0]][
+                horizontalItemPositions[0][1]
+            ] &&
             localVisited[horizontalItemPositions[1][0]] &&
-            localVisited[horizontalItemPositions[1][0]][horizontalItemPositions[1][1]]
+            localVisited[horizontalItemPositions[1][0]][
+                horizontalItemPositions[1][1]
+            ]
         ) {
             // check if they both have up or both have down
             if (
@@ -283,7 +326,15 @@ const part2 = (arr) => {
     };
 
     // get amount of all elements that are the same and connected to each other
-    const getAmount = (arr, i, j, currentTotal, currentItem, currentTotalWalls, localVisited) => {
+    const getAmount = (
+        arr,
+        i,
+        j,
+        currentTotal,
+        currentItem,
+        currentTotalWalls,
+        localVisited,
+    ) => {
         if (i < 0 || i >= arr.length || j < 0 || j >= arr[i].length) {
             return [currentTotal, currentTotalWalls];
         }
@@ -296,7 +347,14 @@ const part2 = (arr) => {
 
         console.log('adding', i, j, arr[i][j]);
         const wallPositions = getWallPositions(arr, i, j, currentItem);
-        let addedWalls = getAmountOfNewWalls(arr, i, j, currentItem, wallPositions, localVisited);
+        let addedWalls = getAmountOfNewWalls(
+            arr,
+            i,
+            j,
+            currentItem,
+            wallPositions,
+            localVisited,
+        );
         console.log('wallPositions', wallPositions);
         console.log('walls', addedWalls);
 
@@ -332,8 +390,24 @@ const part2 = (arr) => {
         for (let j = 0; j < arr[i].length; j++) {
             if (!visited[i][j]) {
                 const localVisited = generateVisited(arr);
-                const [sum, walls] = getAmount(arr, i, j, 0, arr[i][j], 0, localVisited);
-                console.log('Length of ', arr[i][j], ' is ', sum, ' with ', walls, ' walls');
+                const [sum, walls] = getAmount(
+                    arr,
+                    i,
+                    j,
+                    0,
+                    arr[i][j],
+                    0,
+                    localVisited,
+                );
+                console.log(
+                    'Length of ',
+                    arr[i][j],
+                    ' is ',
+                    sum,
+                    ' with ',
+                    walls,
+                    ' walls',
+                );
                 totalPrice += sum * walls;
             }
         }
@@ -373,7 +447,14 @@ const part1 = (arr) => {
         return walls;
     };
     // get amount of all elements that are the same and connected to each other
-    const getAmount = (arr, i, j, currentTotal, currentItem, currentTotalWalls) => {
+    const getAmount = (
+        arr,
+        i,
+        j,
+        currentTotal,
+        currentItem,
+        currentTotalWalls,
+    ) => {
         if (i < 0 || i >= arr.length || j < 0 || j >= arr[i].length) {
             return [currentTotal, currentTotalWalls];
         }

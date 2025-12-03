@@ -1,6 +1,8 @@
 import input from './input.js';
 
-const formattedInput = input.split('\n').map((line) => line.split(' ').map((num) => parseInt(num)));
+const formattedInput = input
+    .split('\n')
+    .map((line) => line.split(' ').map((num) => parseInt(num)));
 
 let validLines1 = 0;
 
@@ -17,7 +19,10 @@ formattedInput.forEach((line) => {
             break;
         }
 
-        if (Math.abs(line[i] - line[i - 1]) < 1 || Math.abs(line[i] - line[i - 1]) > 3) {
+        if (
+            Math.abs(line[i] - line[i - 1]) < 1 ||
+            Math.abs(line[i] - line[i - 1]) > 3
+        ) {
             isSafe = false;
             break;
         }

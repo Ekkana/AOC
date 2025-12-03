@@ -1,9 +1,15 @@
 const path = require('path');
 const fs = require('fs');
 
-const inputRules = fs.readFileSync(path.join(__dirname, 'input1.txt'), 'utf8').toString().trim();
+const inputRules = fs
+    .readFileSync(path.join(__dirname, 'input1.txt'), 'utf8')
+    .toString()
+    .trim();
 
-const inputRecord = fs.readFileSync(path.join(__dirname, 'input2.txt'), 'utf8').toString().trim();
+const inputRecord = fs
+    .readFileSync(path.join(__dirname, 'input2.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const rulesSplitLines = inputRules.split('\n');
 const rulesArr = rulesSplitLines.map((line) => line.split('|'));

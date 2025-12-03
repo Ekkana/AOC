@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const input = fs.readFileSync(path.join(__dirname, 'input1.txt'), 'utf8').toString().trim();
+const input = fs
+    .readFileSync(path.join(__dirname, 'input1.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const splitLines = input.split('\n');
 const arr = splitLines.map((line) => line.split(''));

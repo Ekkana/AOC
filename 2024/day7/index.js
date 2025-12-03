@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const input = fs.readFileSync(path.join(__dirname, 'input1.txt'), 'utf8').toString().trim();
+const input = fs
+    .readFileSync(path.join(__dirname, 'input1.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const splitLines = input.split('\n');
 const arr = splitLines.map((line) => [
@@ -169,7 +172,9 @@ const part4 = () => {
         const bStr = b.toString();
         const isValid = aStr.substring(aStr.length - bStr.length) === bStr;
 
-        return isValid ? parseInt(aStr.substring(0, aStr.length - bStr.length)) : 0;
+        return isValid
+            ? parseInt(aStr.substring(0, aStr.length - bStr.length))
+            : 0;
     };
 
     for (let i = 0; i < arr.length; i++) {

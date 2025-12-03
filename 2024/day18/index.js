@@ -60,7 +60,13 @@ function part2() {
             if (x === end[0] && y === end[1]) {
                 return true;
             }
-            if (x < 0 || x >= mapSize[0] || y < 0 || y >= mapSize[1] || !map[x][y]) {
+            if (
+                x < 0 ||
+                x >= mapSize[0] ||
+                y < 0 ||
+                y >= mapSize[1] ||
+                !map[x][y]
+            ) {
                 continue;
             }
             if (visited[x][y]) {
@@ -72,20 +78,39 @@ function part2() {
                 x + possibleMoves.left[0],
                 y + possibleMoves.left[1],
                 steps + 1,
-                steps + 1 + getWeight(x + possibleMoves.left[0], y + possibleMoves.left[1]),
+                steps +
+                    1 +
+                    getWeight(
+                        x + possibleMoves.left[0],
+                        y + possibleMoves.left[1],
+                    ),
             ]);
             queue.push([
                 x + possibleMoves.right[0],
                 y + possibleMoves.right[1],
                 steps + 1,
-                steps + 1 + getWeight(x + possibleMoves.right[0], y + possibleMoves.right[1]),
+                steps +
+                    1 +
+                    getWeight(
+                        x + possibleMoves.right[0],
+                        y + possibleMoves.right[1],
+                    ),
             ]);
-            queue.push([x + possibleMoves.up[0], y + possibleMoves.up[1], steps + 1]);
+            queue.push([
+                x + possibleMoves.up[0],
+                y + possibleMoves.up[1],
+                steps + 1,
+            ]);
             queue.push([
                 x + possibleMoves.down[0],
                 y + possibleMoves.down[1],
                 steps + 1,
-                steps + 1 + getWeight(x + possibleMoves.down[0], y + possibleMoves.down[1]),
+                steps +
+                    1 +
+                    getWeight(
+                        x + possibleMoves.down[0],
+                        y + possibleMoves.down[1],
+                    ),
             ]);
         }
     };
@@ -149,7 +174,13 @@ function part1() {
             console.log(steps);
             break;
         }
-        if (x < 0 || x >= mapSize[0] || y < 0 || y >= mapSize[1] || !map[x][y]) {
+        if (
+            x < 0 ||
+            x >= mapSize[0] ||
+            y < 0 ||
+            y >= mapSize[1] ||
+            !map[x][y]
+        ) {
             continue;
         }
         if (visited[x][y]) {
@@ -157,9 +188,25 @@ function part1() {
         }
         visited[x][y] = true;
 
-        queue.push([x + possibleMoves.left[0], y + possibleMoves.left[1], steps + 1]);
-        queue.push([x + possibleMoves.right[0], y + possibleMoves.right[1], steps + 1]);
-        queue.push([x + possibleMoves.up[0], y + possibleMoves.up[1], steps + 1]);
-        queue.push([x + possibleMoves.down[0], y + possibleMoves.down[1], steps + 1]);
+        queue.push([
+            x + possibleMoves.left[0],
+            y + possibleMoves.left[1],
+            steps + 1,
+        ]);
+        queue.push([
+            x + possibleMoves.right[0],
+            y + possibleMoves.right[1],
+            steps + 1,
+        ]);
+        queue.push([
+            x + possibleMoves.up[0],
+            y + possibleMoves.up[1],
+            steps + 1,
+        ]);
+        queue.push([
+            x + possibleMoves.down[0],
+            y + possibleMoves.down[1],
+            steps + 1,
+        ]);
     }
 }

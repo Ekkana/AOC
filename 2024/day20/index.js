@@ -68,7 +68,12 @@ function part2() {
         while (queue.length > 0) {
             const [curI, curJ, steps] = queue.shift();
 
-            if (curI < 0 || curI >= map.length || curJ < 0 || curJ >= map[0].length) {
+            if (
+                curI < 0 ||
+                curI >= map.length ||
+                curJ < 0 ||
+                curJ >= map[0].length
+            ) {
                 continue;
             }
             if (steps > maxLength) {
@@ -83,7 +88,9 @@ function part2() {
             if (map[curI][curJ] !== WALL) {
                 const newJumpLength =
                     distanceFromStart[end[0]][end[1]] -
-                    (distanceFromStart[start[0]][start[1]] + distanceFromEnd[curI][curJ] + steps);
+                    (distanceFromStart[start[0]][start[1]] +
+                        distanceFromEnd[curI][curJ] +
+                        steps);
 
                 jumpLengths.push(newJumpLength);
             }

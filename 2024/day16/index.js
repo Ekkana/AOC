@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const input = fs.readFileSync(path.join(__dirname, 'input3.txt'), 'utf8').toString().trim();
+const input = fs
+    .readFileSync(path.join(__dirname, 'input3.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const map = input.split('\n');
 let start = [];
@@ -40,7 +43,9 @@ part1_bfs();
 part2_bfs();
 
 function part2_bfs() {
-    const queue = [[start[0], start[1], startDirection, 0, [[start[0], start[1]]]]];
+    const queue = [
+        [start[0], start[1], startDirection, 0, [[start[0], start[1]]]],
+    ];
     const visited = new Map();
     const solutions = [];
     let totalLength = 0;
@@ -73,14 +78,20 @@ function part2_bfs() {
             y + MOVES[turnOptions[0]][1],
             turnOptions[0],
             score + 1001,
-            [...path, [x + MOVES[turnOptions[0]][0], y + MOVES[turnOptions[0]][1]]],
+            [
+                ...path,
+                [x + MOVES[turnOptions[0]][0], y + MOVES[turnOptions[0]][1]],
+            ],
         ]);
         queue.push([
             x + MOVES[turnOptions[1]][0],
             y + MOVES[turnOptions[1]][1],
             turnOptions[1],
             score + 1001,
-            [...path, [x + MOVES[turnOptions[1]][0], y + MOVES[turnOptions[1]][1]]],
+            [
+                ...path,
+                [x + MOVES[turnOptions[1]][0], y + MOVES[turnOptions[1]][1]],
+            ],
         ]);
 
         if (x === end[0] && y === end[1]) {
@@ -92,7 +103,9 @@ function part2_bfs() {
 }
 
 function part1_bfs() {
-    const queue = [[start[0], start[1], startDirection, 0, [[start[0], start[1]]]]];
+    const queue = [
+        [start[0], start[1], startDirection, 0, [[start[0], start[1]]]],
+    ];
     const visited = new Map();
 
     console.time('bfs');
@@ -120,14 +133,20 @@ function part1_bfs() {
             y + MOVES[turnOptions[0]][1],
             turnOptions[0],
             score + 1001,
-            [...path, [x + MOVES[turnOptions[0]][0], y + MOVES[turnOptions[0]][1]]],
+            [
+                ...path,
+                [x + MOVES[turnOptions[0]][0], y + MOVES[turnOptions[0]][1]],
+            ],
         ]);
         queue.push([
             x + MOVES[turnOptions[1]][0],
             y + MOVES[turnOptions[1]][1],
             turnOptions[1],
             score + 1001,
-            [...path, [x + MOVES[turnOptions[1]][0], y + MOVES[turnOptions[1]][1]]],
+            [
+                ...path,
+                [x + MOVES[turnOptions[1]][0], y + MOVES[turnOptions[1]][1]],
+            ],
         ]);
 
         if (x === end[0] && y === end[1]) {
@@ -171,14 +190,20 @@ function part1_dfs() {
 
         const turnOptions = getTurnOptions(direction);
         const turn1 = getScore(
-            [pos[0] + MOVES[turnOptions[0]][0], pos[1] + MOVES[turnOptions[0]][1]],
+            [
+                pos[0] + MOVES[turnOptions[0]][0],
+                pos[1] + MOVES[turnOptions[0]][1],
+            ],
             turnOptions[0],
             score + 1001,
             localVisited,
             localPath,
         );
         const turn2 = getScore(
-            [pos[0] + MOVES[turnOptions[1]][0], pos[1] + MOVES[turnOptions[1]][1]],
+            [
+                pos[0] + MOVES[turnOptions[1]][0],
+                pos[1] + MOVES[turnOptions[1]][1],
+            ],
             turnOptions[1],
             score + 1001,
             localVisited,

@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const input = fs.readFileSync(path.join(__dirname, 'input.txt'), 'utf8').toString().trim();
+const input = fs
+    .readFileSync(path.join(__dirname, 'input.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const splitLines = input.split('\n');
 const arr = splitLines.map((line) => line.split(''));
@@ -111,7 +114,10 @@ const checkDirections2 = (i, k) => {
             }
         }
 
-        if (newWord === word2 || newWord === word2.split('').reverse().join('')) {
+        if (
+            newWord === word2 ||
+            newWord === word2.split('').reverse().join('')
+        ) {
             numberOfWords++;
         }
     }

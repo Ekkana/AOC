@@ -7,9 +7,19 @@ part2_sol3();
 console.timeEnd('part2_sol3');
 
 function part2_sol3() {
-    const canCombine = (target, towels, currentStr = '', count = 0, visited = {}) => {
+    const canCombine = (
+        target,
+        towels,
+        currentStr = '',
+        count = 0,
+        visited = {},
+    ) => {
         if (typeof visited[currentStr] !== 'undefined') {
-            console.log('returning from visited', currentStr, visited[currentStr]);
+            console.log(
+                'returning from visited',
+                currentStr,
+                visited[currentStr],
+            );
             return visited[currentStr];
         }
 

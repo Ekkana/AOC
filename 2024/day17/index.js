@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const inputRules = fs.readFileSync(path.join(__dirname, 'input1.txt'), 'utf8').toString().trim();
+const inputRules = fs
+    .readFileSync(path.join(__dirname, 'input1.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const [reg, inp] = inputRules.split('\n\n');
 
@@ -49,7 +52,8 @@ function part2() {
             regB = comboOperand()[a] % 8;
             currentInstruction += 2;
         },
-        3: (a) => (regA === 0 ? (currentInstruction += 2) : (currentInstruction = a)),
+        3: (a) =>
+            regA === 0 ? (currentInstruction += 2) : (currentInstruction = a),
         4: () => {
             regB = (regB ^ regC) & 7;
             currentInstruction += 2;
@@ -75,7 +79,8 @@ function part2() {
         regC = 0;
 
         while (currentInstruction < instructions.length) {
-            const instruction = instructionsLookup[instructions[currentInstruction]];
+            const instruction =
+                instructionsLookup[instructions[currentInstruction]];
             const operand = instructions[currentInstruction + 1];
             instruction(operand);
         }

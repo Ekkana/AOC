@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const input = fs.readFileSync(path.join(__dirname, 'input1.txt'), 'utf8').toString().trim();
+const input = fs
+    .readFileSync(path.join(__dirname, 'input1.txt'), 'utf8')
+    .toString()
+    .trim();
 
 const splitLines = input.split('\n');
 const arr = splitLines.map((line) => line.split('').map((x) => parseInt(x)));
@@ -31,7 +34,14 @@ const solution1Part2 = (arr) => {
             if (arr[nextI][nextK] === curValue + 1) {
                 total = Math.max(
                     total,
-                    findPath(arr, nextI, nextK, arr[nextI][nextK], total, visitedNines),
+                    findPath(
+                        arr,
+                        nextI,
+                        nextK,
+                        arr[nextI][nextK],
+                        total,
+                        visitedNines,
+                    ),
                 );
             }
         }
@@ -79,7 +89,14 @@ const solution1Part1 = (arr) => {
             if (arr[nextI][nextK] === curValue + 1) {
                 total = Math.max(
                     total,
-                    findPath(arr, nextI, nextK, arr[nextI][nextK], total, visitedNines),
+                    findPath(
+                        arr,
+                        nextI,
+                        nextK,
+                        arr[nextI][nextK],
+                        total,
+                        visitedNines,
+                    ),
                 );
             }
         }

@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const input = fs.readFileSync(path.join(__dirname, 'input1.txt'), 'utf8').toString().trim();
+const input = fs
+    .readFileSync(path.join(__dirname, 'input1.txt'), 'utf8')
+    .toString()
+    .trim();
 
 part1();
 part2();
@@ -120,7 +123,10 @@ function part2() {
         let newInputPosition = [position[0] + move[0], position[1] + move[1]];
         for (let box of boxesArray) {
             map[newInputPosition[0]][newInputPosition[1]] = box[1];
-            newInputPosition = [newInputPosition[0] + move[0], newInputPosition[1] + move[1]];
+            newInputPosition = [
+                newInputPosition[0] + move[0],
+                newInputPosition[1] + move[1],
+            ];
         }
     };
 
@@ -145,9 +151,13 @@ function part2() {
             }
             if (
                 boxPositions[boxLeftHalfPosition[0]] &&
-                boxPositions[boxLeftHalfPosition[0]].includes(boxLeftHalfPosition[1]) &&
+                boxPositions[boxLeftHalfPosition[0]].includes(
+                    boxLeftHalfPosition[1],
+                ) &&
                 boxPositions[boxRightHalfPosition[0]] &&
-                boxPositions[boxRightHalfPosition[0]].includes(boxRightHalfPosition[1])
+                boxPositions[boxRightHalfPosition[0]].includes(
+                    boxRightHalfPosition[1],
+                )
             ) {
                 return boxPositions;
             }
@@ -170,8 +180,16 @@ function part2() {
                 boxRightHalfPosition[1] + move[1],
             ];
 
-            const positionsLeft = getBoxPositions(newLeftHalfPosition, move, boxPositions);
-            const positionsRight = getBoxPositions(newRightHalfPosition, move, boxPositions);
+            const positionsLeft = getBoxPositions(
+                newLeftHalfPosition,
+                move,
+                boxPositions,
+            );
+            const positionsRight = getBoxPositions(
+                newRightHalfPosition,
+                move,
+                boxPositions,
+            );
 
             const newBoxPositions = {};
             for (let i of Object.keys(positionsLeft)) {
@@ -196,7 +214,9 @@ function part2() {
         const swapBoxPositions = (boxPositions, move) => {
             const isUp = move[0] < 0;
 
-            const sortedKeys = Object.keys(boxPositions).sort((a, b) => (isUp ? a - b : b - a));
+            const sortedKeys = Object.keys(boxPositions).sort((a, b) =>
+                isUp ? a - b : b - a,
+            );
 
             for (let i of sortedKeys) {
                 for (let k of boxPositions[i]) {
@@ -213,7 +233,9 @@ function part2() {
 
     const moveBox = (position, move) => {
         const isHorizontal = move[1] !== 0;
-        return isHorizontal ? moveBoxHorizontal(position, move) : moveBoxVertical(position, move);
+        return isHorizontal
+            ? moveBoxHorizontal(position, move)
+            : moveBoxVertical(position, move);
     };
 
     console.time('Part2 time:');

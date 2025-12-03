@@ -129,7 +129,10 @@ function part2() {
             const numericPath = findNumericPath(
                 j === 0
                     ? numericKeyPadStart
-                    : findIndex(numericKeyPad, parseNumericInput(numericInput[i][j - 1])),
+                    : findIndex(
+                          numericKeyPad,
+                          parseNumericInput(numericInput[i][j - 1]),
+                      ),
                 findIndex(numericKeyPad, parseNumericInput(numericInput[i][j])),
             );
             path[i].push(numericPath);
@@ -253,7 +256,13 @@ function part2() {
     //}
 
     const cache = {};
-    const getPath = (initialPath, targetDepth, previousPath, start, curDepth = 0) => {
+    const getPath = (
+        initialPath,
+        targetDepth,
+        previousPath,
+        start,
+        curDepth = 0,
+    ) => {
         if (curDepth === targetDepth) {
             return previousPath;
         }
@@ -380,7 +389,10 @@ function part1() {
             const numericPath = findNumericPath(
                 j === 0
                     ? numericKeyPadStart
-                    : findIndex(numericKeyPad, parseNumericInput(numericInput[i][j - 1])),
+                    : findIndex(
+                          numericKeyPad,
+                          parseNumericInput(numericInput[i][j - 1]),
+                      ),
                 findIndex(numericKeyPad, parseNumericInput(numericInput[i][j])),
             );
             path[i].push(numericPath);

@@ -39,7 +39,10 @@ function part2() {
 
         for (let j = 0; j < results[i].length; j++) {
             const leftOver = results[i][j] % 10;
-            sumDistance[i].push([leftOver, j == 0 ? 0 : leftOver - sumDistance[i][j - 1][0]]);
+            sumDistance[i].push([
+                leftOver,
+                j == 0 ? 0 : leftOver - sumDistance[i][j - 1][0],
+            ]);
         }
     }
 
@@ -66,7 +69,10 @@ function part2() {
         for (let j = 0; j < windows[i].length; j++) {
             const key = windows[i][j].map((el) => el[1]).join('|');
             if (!inclusions[i].has(key)) {
-                inclusions[i].set(key, windows[i][j][windows[i][j].length - 1][0]);
+                inclusions[i].set(
+                    key,
+                    windows[i][j][windows[i][j].length - 1][0],
+                );
             }
         }
     }
